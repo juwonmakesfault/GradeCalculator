@@ -35,5 +35,4 @@ public class GradeRepositoryTest {
         List<Grade> grades =  gradeRepository.getGrades();
         assertThat(grades.size(),is(1));
     }
-
 }
