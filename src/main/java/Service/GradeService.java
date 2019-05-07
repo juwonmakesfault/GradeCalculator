@@ -61,5 +61,20 @@ public class GradeService {
         return null;
     }
 
+    public List<Grade> FetchGrade(String find){
+        Grade cur_grade;
 
+        List<Grade> fetch_grades = new ArrayList<Grade>();
+
+        Iterator<Grade> Grades = gradeRepository.getGrades().iterator();
+        while(Grades.hasNext()) {
+            cur_grade = Grades.next();
+            if(cur_grade.getGrade().equals(find))
+                fetch_grades.add(cur_grade);
+        }
+
+        return fetch_grades;
+    }
+
+   
 }
