@@ -16,16 +16,16 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GradeServiceTest {
+    
+    @Mock
+    Grade grade;
 
     @Spy
     GradeRepository gradeRepository;
 
-    @Mock
-    Grade grade;
-
     @InjectMocks
     GradeService gradeService;
-
+  
     @Test
     public void setGradeTest(){
         grade.setGrade("A0");
@@ -73,6 +73,5 @@ public class GradeServiceTest {
         gradeRepository.insertGrade(new Grade("B+", "웹프로그래밍", 3));
 
         assertThat(gradeService.FetchGrade("A+").size(), is(3));
-    }
-    
+    }    
 }
