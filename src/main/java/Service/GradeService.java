@@ -44,5 +44,22 @@ public class GradeService {
 
        return (cGPA/totalCredit);
    }
+  
+  
+    public String FetchSubject(String subject_name){
+        Grade cur_grade;
+
+        List<Grade> fetch_grades = new ArrayList<Grade>();
+
+        Iterator<Grade> Grades = gradeRepository.getGrades().iterator();
+        while(Grades.hasNext()) {
+            cur_grade = Grades.next();
+            if(cur_grade.getSubject().equals(subject_name))
+                return cur_grade.getGrade();
+        }
+
+        return null;
+    }
+
 
 }
