@@ -46,6 +46,12 @@ public class GradeServiceTest {
     }
 
     @Test
+    public void isGradeTest(){
+        grade.setGrade("E");
+        assertFalse( grade.getGrade().charAt(0) > 'F');
+    }
+
+    @Test
     public void calculateCurrentGPA(){
         gradeRepository.insertGrade(new Grade("A+", "sub1", 3));
         gradeRepository.insertGrade(new Grade("A+", "sub2", 3));
