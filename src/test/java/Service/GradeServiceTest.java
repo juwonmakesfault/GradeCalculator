@@ -41,4 +41,15 @@ public class GradeServiceTest {
         assertThat(gradeService.FetchSubject("실전코딩"), is("A+"));
     }
     
+    @Test
+    public void FetchGradesTest(){
+        gradeRepository.insertGrade(new Grade("A+", "실전코딩", 2));
+        gradeRepository.insertGrade(new Grade("B0", "IT영어", 1));
+        gradeRepository.insertGrade(new Grade("A+", "데이터통신", 3));
+        gradeRepository.insertGrade(new Grade("A+", "운영체제및실습", 3));
+        gradeRepository.insertGrade(new Grade("B+", "웹프로그래밍", 3));
+
+        assertThat(gradeService.FetchGrade("A+").size(), is(3));
+    }
+    
 }
