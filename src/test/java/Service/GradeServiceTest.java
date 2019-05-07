@@ -35,5 +35,10 @@ public class GradeServiceTest {
         assertThat(gradeService.calculateGPA(), is(4.5));
     }
 
+    @Test
+    public void FetchRealCodingGrade(){
+        gradeRepository.insertGrade(new Grade("A+", "실전코딩", 2));
+        assertThat(gradeService.FetchSubject("실전코딩"), is("A+"));
+    }
     
 }
