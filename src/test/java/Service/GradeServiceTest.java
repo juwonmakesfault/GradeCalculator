@@ -1,19 +1,30 @@
 package Service;
 
 import Domain.Grade;
+import Repository.GradeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GradeServiceTest {
-    
+
+    @Spy
+    GradeRepository gradeRepository;
+
     @Mock
     Grade grade;
+
+    @InjectMocks
+    GradeService gradeService;
 
     @Test
     public void setGradeTest(){
@@ -27,7 +38,19 @@ public class GradeServiceTest {
         grade1.setCredit(3);
         assertTrue(grade1.getCredit()>=0);
     }
-    
+
+    @Test
+    public void upperCaseTest() {
+        Grade grade = new Grade("a+", null, 0);
+        assertTrue(Character.isUpperCase(grade.getGrade().charAt(0)));
+    }
+
+    @Test
+    public void isGradeTest(){
+        grade.setGrade("E");
+        assertFalse( grade.getGrade().charAt(0) > 'F');
+    }
+
     @Test
     public void calculateCurrentGPA(){
         gradeRepository.insertGrade(new Grade("A+", "sub1", 3));
