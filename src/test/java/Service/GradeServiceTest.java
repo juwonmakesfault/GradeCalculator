@@ -50,7 +50,13 @@ public class GradeServiceTest {
         Grade grade = new Grade("E0", null, 0);
         assertThat( grade.getGrade().charAt(0) , anyOf(is('A'), is('B'), is('C'), is('D'), is('F') ));
     }
-
+  
+    @Test
+    public void isAddOn(){
+        Grade grade = new Grade("A+", null, 0);
+        assertThat( grade.getGrade().charAt(1) , anyOf(is('+'), is('0')));
+    }
+  
     @Test
     public void calculateCurrentGPA(){
         gradeRepository.insertGrade(new Grade("A+", "sub1", 3));
