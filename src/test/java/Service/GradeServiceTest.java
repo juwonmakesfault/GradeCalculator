@@ -47,8 +47,8 @@ public class GradeServiceTest {
 
     @Test
     public void isGradeTest(){
-        grade.setGrade("E");
-        assertFalse( grade.getGrade().charAt(0) > 'F');
+        Grade grade = new Grade("E0", null, 0);
+        assertThat( grade.getGrade().charAt(0) , anyOf(is('A'), is('B'), is('C'), is('D'), is('F') ));
     }
 
     @Test
