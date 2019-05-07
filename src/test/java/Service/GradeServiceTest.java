@@ -28,4 +28,12 @@ public class GradeServiceTest {
         assertTrue(grade1.getCredit()>=0);
     }
     
+    @Test
+    public void calculateCurrentGPA(){
+        gradeRepository.insertGrade(new Grade("A+", "sub1", 3));
+        gradeRepository.insertGrade(new Grade("A+", "sub2", 3));
+        assertThat(gradeService.calculateGPA(), is(4.5));
+    }
+
+    
 }
