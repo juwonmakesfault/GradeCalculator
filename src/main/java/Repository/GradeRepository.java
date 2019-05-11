@@ -1,18 +1,16 @@
 package Repository;
 
 import Domain.Grade;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class GradeRepository {
-    List<Grade> grades = new ArrayList<Grade>();
+    private List<Grade> grades = new ArrayList<Grade>();
 
     public void insertGrade(Grade grade){
         grades.add(grade);
-    }
-
-    public List<Grade> getGrades(){
-        return grades;
     }
 }
