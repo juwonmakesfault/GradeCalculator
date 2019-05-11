@@ -4,6 +4,7 @@ import Domain.Grade;
 import Repository.GradeRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,39 +18,24 @@ public class GradeService {
         Grade cur_grade;
 
         Iterator<Grade> Grades = gradeRepository.getGrades().iterator();
+
+        List gradeList = Arrays.asList(new String[] {"A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0", "F"});
+
         while(Grades.hasNext()) {
             cur_grade = Grades.next();
             totalCredit += cur_grade.getCredit();
+            String grade = cur_grade.getGrade();
 
-            cGPA += cur_grade.getCredit() * alpha2Number(cur_grade);
-
-
+            if(gradeList.contains(grade))
+                cGPA += cur_grade.getCredit() * alpha2Number(gradeList.indexOf(grade));
         }
 
         return (cGPA/totalCredit);
     }
 
-    public double alpha2Number(Grade cur_grade){
-        if(cur_grade.getGrade().equals("A+")){
-            return cur_grade.getCredit() * 4.5;
-        } else if(cur_grade.getGrade().equals("A0")){
-            return cur_grade.getCredit() * 4.0;
-        } else if(cur_grade.getGrade().equals("B+")){
-            return cur_grade.getCredit() * 3.5;
-        } else if(cur_grade.getGrade().equals("B0")){
-            return cur_grade.getCredit() * 3.0;
-        } else if(cur_grade.getGrade().equals("C+")){
-            return cur_grade.getCredit() * 2.5;
-        } else if(cur_grade.getGrade().equals("C0")) {
-            return cur_grade.getCredit() * 2.0;
-        } else if(cur_grade.getGrade().equals("D+")){
-            return cur_grade.getCredit() * 1.5;
-        } else if(cur_grade.getGrade().equals("D0")){
-            return cur_grade.getCredit() * 1.0;
-        } else if(cur_grade.getGrade().equals("F")){
-            return cur_grade.getCredit() * 0;
-        }
-        return -1;
+    public double alpha2Number(int gradeNum){
+        if (gradeNum == 9) return 0;
+        return (9-gradeNum) * 0.5;
     }
 
 
